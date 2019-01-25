@@ -1,0 +1,77 @@
+<div class="container-fluid">
+  <div class="row my-3">
+      <div class="col-lg">
+          <div class="card bg-light mb-3 ">
+              <div class="card-header text-center">{{ userData.name }}</div>
+              <div class="card-body">
+                  <img src="{{ userData.avatarfull}}" class="rounded mx-auto d-block">
+                  <hr>
+                  <ul class="list-group list-group-flush">
+                      <li class="list-group-item">MMR - {{ userData.mmr}}</li>
+                      <li class="list-group-item">Rank Tier - {{ userData.rank_tier}}</li>
+                      <li class="list-group-item">Account Id - {{ userData.account_id}}</li>
+                  </ul>
+              </div>
+            </div>
+    </div>
+    <div class="col-lg">
+        <div class="card bg-light mb-3 ">
+            <div class="card-header text-center">Most Played Friends</div>
+            <div class="card-body limit-height">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let peer of peerData" (click)="openDialog(peer.personaname, peer.avatarfull,peer.win,peer.games)">
+                        <span><img class="avatar" src="{{ peer.avatarfull}}"></span>
+                      {{ peer.personaname }}
+                      <span class="badge badge-primary badge-pill">{{peer.with_games}}</span>
+                    </li>
+                  </ul>
+            </div>
+          </div>
+    </div>
+    <div class="col-lg">
+        <div class="card bg-light mb-3 ">
+            <div class="card-header text-center">Most Played Heroes</div>
+            <div class="card-body limit-height">
+                <ul class="list-group">
+                  <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let heroes of heroesPlayedData" (click)="openDialog('rubick','/assets/heroes_img/'+heroes.hero_id+'.jpg',heroes.win,heroes.games)">
+                      <span><img class="avatar" src="/assets/heroes_img/{{ heroes.hero_id}}.jpg"></span>
+                        <span>Rubick</span> 
+                        <span class="badge badge-primary badge-pill">{{heroes.games}}</span>
+                    </li>
+                  </ul>
+            </div>
+          </div>
+  </div>
+</div>
+
+<div class="row my-3">
+
+</div>
+  <div class="card">
+      <div class="card-header text-center">Recent Matches</div>
+      <div class="card-body">
+          <div class="table-responsive">
+              <table class="table table-hover table-striped">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Hero</th>
+                      <th scope="col">K/D/A</th>
+                      <th scope="col">Handle</th>
+                      <th scope="col">Handle</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let recentMatches of extraMatchData">
+                      <th scope="row"><span><img class="avatar" src="/assets/heroes_img/{{ recentMatches.hero_id}}.jpg"></span></th>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+      </div>
+    </div>
+</div>

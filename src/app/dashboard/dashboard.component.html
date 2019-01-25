@@ -1,0 +1,115 @@
+<div class="container"
+     fxLayout
+     fxLayout.xs="column"
+     fxLayoutAlign="center center"
+     fxLayoutGap="10px"
+     fxLayoutGap.xs="0">
+  <div class="item item-1" fxFlex fxLayoutAlign="center space-between">
+    <mat-card class="top-cards">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Highest MMRs - Goa</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Personal data
+              </mat-panel-title>
+              <mat-panel-description>
+                Type your name and age
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+        
+            <mat-form-field>
+              <input matInput placeholder="First name">
+            </mat-form-field>
+        
+            <mat-form-field>
+              <input matInput placeholder="Age">
+            </mat-form-field>
+          </mat-expansion-panel>
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Self aware panel
+              </mat-panel-title>
+              <mat-panel-description>
+                Currently I am {{panelOpenState ? 'open' : 'closed'}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>I'm visible because I am open</p>
+          </mat-expansion-panel>
+        </mat-accordion>
+        
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="item item-3" fxFlex fxLayoutAlign="center center">
+    <mat-card class="top-cards">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Upcoming Events</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Personal data
+              </mat-panel-title>
+              <mat-panel-description>
+                Type your name and age
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+        
+            <mat-form-field>
+              <input matInput placeholder="First name">
+            </mat-form-field>
+        
+            <mat-form-field>
+              <input matInput placeholder="Age">
+            </mat-form-field>
+          </mat-expansion-panel>
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Self aware panel
+              </mat-panel-title>
+              <mat-panel-description>
+                Currently I am {{panelOpenState ? 'open' : 'closed'}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>I'm visible because I am open</p>
+          </mat-expansion-panel>
+        </mat-accordion>
+        
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+
+<div>
+  <mat-card> 
+      <mat-card-header>
+          <mat-card-title>All Players</mat-card-title>
+      </mat-card-header>
+    <mat-card-content>
+        <mat-list>
+          <mat-list-item *ngFor="let user of allSteamData"  routerLink="/steamUser/{{user.profile.account_id}}">
+            <img matListAvatar src="{{ user.profile.avatarfull }}" >
+            <h3 matLine>{{ user.profile.personaname }}</h3>
+            <p matLine>
+              <span> {{ user.solo_competitive_rank }} </span>
+              <span class="demo-2"> {{ user.rank_tier }}</span>
+            </p>
+            <mat-divider></mat-divider>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+  </mat-card>
+</div>
