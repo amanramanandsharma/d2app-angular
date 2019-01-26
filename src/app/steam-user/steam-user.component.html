@@ -19,7 +19,7 @@
             <div class="card-header text-center">Most Played Friends</div>
             <div class="card-body limit-height">
                 <ul class="list-group">
-                    <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let peer of peerData" (click)="openDialog(peer.personaname, peer.avatarfull,peer.win,peer.games)">
+                    <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let peer of peerData" (click)="openDialog(peer.personaname, peer.avatarfull,peer.win,peer.games,userData.account_id,peer.account_id,0)">
                         <span><img class="avatar" src="{{ peer.avatarfull}}"></span>
                       {{ peer.personaname }}
                       <span class="badge badge-primary badge-pill">{{peer.with_games}}</span>
@@ -33,9 +33,9 @@
             <div class="card-header text-center">Most Played Heroes</div>
             <div class="card-body limit-height">
                 <ul class="list-group">
-                  <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let heroes of heroesPlayedData" (click)="openDialog('rubick','/assets/heroes_img/'+heroes.hero_id+'.jpg',heroes.win,heroes.games)">
+                  <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let heroes of heroesPlayedData" (click)="openDialog(heroes.hero_id,'/assets/heroes_img/'+heroes.hero_id+'.jpg',heroes.win,heroes.games,userData.account_id,heroes.hero_id,1)">
                       <span><img class="avatar" src="/assets/heroes_img/{{ heroes.hero_id}}.jpg"></span>
-                        <span>Rubick</span> 
+                        <span>{{ heroes.hero_id | idHero }} </span> 
                         <span class="badge badge-primary badge-pill">{{heroes.games}}</span>
                     </li>
                   </ul>
@@ -44,9 +44,6 @@
   </div>
 </div>
 
-<div class="row my-3">
-
-</div>
   <div class="card">
       <div class="card-header text-center">Recent Matches</div>
       <div class="card-body">
@@ -55,19 +52,28 @@
                   <thead class="thead-dark">
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">Hero</th>
+                      <th scope="col">Gametype</th>
+                      <th scope="col">Win/Loss</th>
                       <th scope="col">K/D/A</th>
-                      <th scope="col">Handle</th>
-                      <th scope="col">Handle</th>
+                      <th scope="col">GPM</th>
+                      <th scope="col">XPM</th>
+                      <th scope="col">Duration</th>
+                      <th scope="col">Match-Id</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let recentMatches of extraMatchData">
-                      <th scope="row"><span><img class="avatar" src="/assets/heroes_img/{{ recentMatches.hero_id}}.jpg"></span></th>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
+                    <tr *ngFor="let recentMatches of extraMatchData" class="{{recentMatches.class}}">
+                      <td><span><img class="avatar" src="/assets/heroes_img/{{ recentMatches.hero_id}}.jpg"></span><span class="px-2">{{ recentMatches.hero_id | idHero }} </span> </td>
+                      <td>{{recentMatches.game_mode | gameType }}   </td>
+                      <td>
+                          <span *ngIf="recentMatches.win"><button mat-icon-button color="warn"><mat-icon>favorite</mat-icon></button></span>
+                          <span *ngIf="!recentMatches.win"><button mat-icon-button ><mat-icon>sentiment_dissatisfied</mat-icon></button></span>
+                        </td>
+                      <td>{{recentMatches.kills }} / {{recentMatches.deaths }} / {{recentMatches.assists }}  </td>
+                      <td>{{recentMatches.gold_per_min }}</td>
+                      <td>{{recentMatches.xp_per_min }}</td>
+                      <td>{{ recentMatches.duration | secondsTime }}  </td>
+                      <td> {{ recentMatches.match_id }} </td>
                     </tr>
                   </tbody>
                 </table>

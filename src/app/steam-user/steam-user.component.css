@@ -10,3 +10,8 @@
       max-height: 400px;
       overflow-x: hidden;
   }
+
+  .fixed-height{
+      overflow-y:scroll;
+      max-height:200px;
+  }

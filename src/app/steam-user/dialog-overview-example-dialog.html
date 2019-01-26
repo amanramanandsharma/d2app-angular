@@ -1,18 +1,63 @@
-<h2 mat-dialog-title style="text-align: center;">{{passedData.name}}</h2>
-<img src="{{passedData.image}}" class="rounded mx-auto d-block">
+<h2 mat-dialog-title style="text-align: center;">{{ passedData.name | idHero }}</h2>
+<hr>
+<div class="card-group">
+    <div class="card">
+        <img src="{{passedData.image}}" class="rounded mx-auto d-block py-2">
+      <div class="card-body">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+          <div style="display: block">
+              <canvas baseChart
+                      [data]="doughnutChartData"
+                      [labels]="doughnutChartLabels"
+                      [chartType]="doughnutChartType"
+                      (chartHover)="chartHovered($event)"
+                      (chartClick)="chartClicked($event)"></canvas>
+            </div>
+      </div>
+    </div>
+</div>
+
+<br>
+<div class="card">
+    <div class="card-header text-center">Recent Matches</div>
+    <div class="card-body">
+        <div class="table-responsive fixed-height">
+            <table class="table table-hover table-striped table-bordered">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Your Hero</th>
+                    <th *ngIf="showFriend" scope="col">Friend's hero</th>
+                    <th *ngIf="showHero" scope="col">K/D/A</th>
+                    <th scope="col">Game Mode</th>
+                    <th scope="col">Win/Lose</th>
+                    <th scope="col">Duration</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr  *ngFor="let eachMatch of extraData" class="{{eachMatch.class}}">
+                    <td><span><img class="avatar  mx-auto d-block" src="/assets/heroes_img/{{ eachMatch.hero_id}}.jpg"></span><span class="text-center"><h6>{{ eachMatch.hero_id | idHero }}</h6></span> </td>
+                    <td *ngIf="showFriend"><span><img class="avatar  mx-auto d-block" src="/assets/heroes_img/{{ eachMatch.friend_hero}}.jpg"></span><span class="text-center"><h6>{{ eachMatch.friend_hero | idHero }}</h6> </span></td>
+                    <td *ngIf="showHero">{{ eachMatch.kills }} / {{ eachMatch.deaths }} / {{ eachMatch.assists }}</td>
+                    <td>{{ eachMatch.game_mode | gameType }}</td>
+                    <td>
+                        <span *ngIf="eachMatch.win"><button mat-icon-button color="warn"><mat-icon>favorite</mat-icon></button></span>
+                        <span *ngIf="!eachMatch.win"><button mat-icon-button ><mat-icon>sentiment_dissatisfied</mat-icon></button></span>
+                      </td>
+                    <td>{{ eachMatch.duration | secondsTime }}</td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+    </div>
+  </div>
 
 <mat-dialog-content class="mat-typography">
- <div style="display: block">
-    <canvas baseChart
-            [data]="doughnutChartData"
-            [labels]="doughnutChartLabels"
-            [chartType]="doughnutChartType"
-            (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)"></canvas>
-  </div>
   <hr>
   <h2 style="text-align: center;">Total Games : {{passedData.total}}</h2>
 </mat-dialog-content>
-<mat-dialog-actions align="end">
+<mat-dialog-actions class="d-flex justify-content-center">
   <button mat-raised-button mat-dialog-close color="primary">Close</button>
 </mat-dialog-actions>

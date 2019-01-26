@@ -3,11 +3,15 @@ import { ActivatedRoute } from '@angular/router';
 import { Dota2apiService } from '../services/dota2api.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
+
 export interface DialogData {
-  name:string;
+  name:any;
   image:string;
   win:number;
   total:number;
+  friendID:number;
+  steamUser:number;
+  type:number;
 }
 
 @Component({
@@ -24,9 +28,9 @@ export class SteamUserComponent implements OnInit {
 
   constructor(private d2api:Dota2apiService,private route: ActivatedRoute,public dialog: MatDialog) { }
 
-  openDialog(name,image,win,totalGames): void {
+  openDialog(name,image,win,totalGames,steamID,friendID,type): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      data: {name:name,image:image,win:win,total:totalGames}
+      data: {name:name,image:image,win:win,total:totalGames,steamUser:steamID,friendID:friendID,type:type}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -52,7 +56,23 @@ export class SteamUserComponent implements OnInit {
     });
 
     this.d2api.getRecentMatches(steamId).subscribe((data: {}) => {
-          this.extraMatchData = data;
+        this.extraMatchData = data;
+
+          for (var i = 0; i < this.extraMatchData.length; i++) {
+            if(this.extraMatchData[i].radiant_win == true && this.extraMatchData[i].player_slot < 10){
+                this.extraMatchData[i].win = true;
+                this.extraMatchData[i].class = 'table-success';
+
+            }else if(this.extraMatchData[i].radiant_win == false && this.extraMatchData[i].player_slot> 99){
+              this.extraMatchData[i].win = true;
+              this.extraMatchData[i].class = 'table-success';
+
+            }else{
+              this.extraMatchData[i].win = false;
+              this.extraMatchData[i].class = 'table-danger';
+
+            }
+      }
     });
 
     this.d2api.getFriends(steamId).subscribe((data: {}) => {
@@ -71,12 +91,87 @@ export class SteamUserComponent implements OnInit {
 @Component({
   selector: 'dialog-overview-example-dialog',
   templateUrl: 'dialog-overview-example-dialog.html',
+  styleUrls: ['./steam-user.component.css']
 })
 export class DialogOverviewExampleDialog {
 
+  private extraData = [];
+  private steamID : any;
+  private friendID : any;
+  private showHero = false;
+  private showFriend = false;
+
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public passedData: DialogData) {}
+    @Inject(MAT_DIALOG_DATA) public passedData: DialogData,
+    private d2api:Dota2apiService) {
+      this.steamID = this.passedData.steamUser;
+      this.friendID = this.passedData.friendID;
+
+      if(this.passedData.type == 0){
+
+            this.showFriend = true;
+            this.showHero = false;
+
+         // --------------------------------- If Type is Friend ---------------------------------------------
+      this.d2api.getFriendsMatches(this.passedData.steamUser,this.passedData.friendID).then((data: any) => {
+        for (var i = 0; i < 20; i++) {
+         this.extraData.push(data[i]);
+      }
+
+      for(var i = 0; i < this.extraData.length; i++){
+          for(var eachHero in this.extraData[i]['heroes']){
+                if( this.friendID == this.extraData[i]['heroes'][eachHero].account_id){
+                  this.extraData[i].friend_hero =  this.extraData[i]['heroes'][eachHero].hero_id;
+                }
+              }
+
+                  if(this.extraData[i].radiant_win == true && this.extraData[i].player_slot < 10){
+                      this.extraData[i].win = true;
+                      this.extraData[i].class = 'table-success';
+
+                  }else if(this.extraData[i].radiant_win == false && this.extraData[i].player_slot> 99){
+                    this.extraData[i].win = true;
+                    this.extraData[i].class = 'table-success';
+
+                  }else{
+                    this.extraData[i].win = false;
+                    this.extraData[i].class = 'table-danger';
+                  }
+
+            }
+      });
+
+      // --------------------------------- If Type is Hero  -------------------------------------------------
+      }else if(this.passedData.type == 1){
+
+              this.showFriend = false;
+              this.showHero = true;
+
+            this.d2api.getHeroMatches(this.passedData.steamUser,this.passedData.name).then((data: any) => {
+              for (var i = 0; i < 20; i++) {
+                this.extraData.push(data[i]);
+            }
+            for(var i = 0; i < this.extraData.length; i++){   
+                    if(this.extraData[i].radiant_win == true && this.extraData[i].player_slot < 10){
+                        this.extraData[i].win = true;
+                        this.extraData[i].class = 'table-success';
+  
+                    }else if(this.extraData[i].radiant_win == false && this.extraData[i].player_slot> 99){
+                      this.extraData[i].win = true;
+                      this.extraData[i].class = 'table-success';
+  
+                    }else{
+                      this.extraData[i].win = false;
+                      this.extraData[i].class = 'table-danger';
+                    }
+                }
+          });
+      }
+
+   
+
+    }
 
   // Doughnut
   public doughnutChartLabels:string[] = ['win','loss'];
@@ -86,5 +181,7 @@ export class DialogOverviewExampleDialog {
   onNoClick(): void {
     this.dialogRef.close();
   }
+ 
+
 
 }

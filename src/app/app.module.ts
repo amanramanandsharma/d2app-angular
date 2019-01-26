@@ -11,13 +11,21 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SteamUserComponent } from './steam-user/steam-user.component';
 import { DialogOverviewExampleDialog } from './steam-user/steam-user.component';
 import { ChartsModule } from 'ng2-charts';
+import { IdHeroPipe } from './pipe/id-hero.pipe';
+import { SecondsTimePipe } from './pipe/seconds-time.pipe';
+import { GameTypePipe } from './pipe/game-type.pipe';
+import { WinLosePipe } from './pipe//win-lose.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     SteamUserComponent,
-    DialogOverviewExampleDialog
+    DialogOverviewExampleDialog,
+    IdHeroPipe,
+    SecondsTimePipe,
+    GameTypePipe,
+    WinLosePipe
   ],
   imports: [
     BrowserModule,
