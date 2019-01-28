@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="alert alert-danger" *ngIf="hideError" role="alert"> Wrong Credentials !</div>
+    
+    <div class="card">
+        <img class="rounded mx-auto d-block" src="/assets/login.png"  width="200px">
+            <div class="card-body">
+                    <div class="form-group">
+                        <input type="email" [(ngModel)]="email" class="form-control"  placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" [(ngModel)]="password"  class="form-control" placeholder="Password">
+                    </div>
+                    <button type="button" (click)="checkCredentials()" class="btn btn-primary">Submit</button>
+            </div>
+    </div>
+</div>
+
+      
+
+
+      

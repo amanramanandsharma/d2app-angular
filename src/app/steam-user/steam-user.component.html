@@ -62,7 +62,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let recentMatches of extraMatchData" class="{{recentMatches.class}}">
+                    <tr *ngFor="let recentMatches of extraMatchData" class="{{recentMatches.class}}" routerLink="/matchId/{{recentMatches.match_id}}">
                       <td><span><img class="avatar" src="/assets/heroes_img/{{ recentMatches.hero_id}}.jpg"></span><span class="px-2">{{ recentMatches.hero_id | idHero }} </span> </td>
                       <td>{{recentMatches.game_mode | gameType }}   </td>
                       <td>

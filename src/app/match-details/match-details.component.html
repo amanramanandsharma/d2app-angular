@@ -1,0 +1,83 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-5  mt-2">
+      <div class="card">
+        <div class="card-body">
+        <h5 class="card-title" ><img src="/assets/radient.png" class="rounded"></h5>
+      </div>
+      </div>
+    </div>
+    <div class="col-lg-2  mt-2">
+      <div class="card">
+        <div class="card-body">
+        <h5 class="card-title" *ngIf="matchData.radiant_win">Radient Victory</h5>
+        <h5 class="card-title" *ngIf="!matchData.radiant_win">Dire victory</h5>
+      </div>
+      </div>
+    </div>
+    <div class="col-lg-5  mt-2">
+      <div class="card">
+        <div class="card-body">
+        <h5 class="card-title"><img src="/assets/dire.png" class="rounded"></h5>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="col-lg  mt-2">
+          <div class="card">
+              <div class="card-body">
+              <h5 class="card-title">Team Details</h5>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">level</th>
+                        <th scope="col">K/D/A</th>
+                        <th scope="col">GPM/XPM</th>
+                        <th scope="col">Items</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let eachPlayer of matchData.players | slice:0:5 ">
+                        <td><span><img class="avatar" src="/assets/heroes_img/{{ eachPlayer.hero_id}}.jpg"></span><span class="px-2">{{ eachPlayer.personaname }} </span> </td>
+                        <td>{{ eachPlayer.level }}</td>
+                        <td>{{ eachPlayer.kills}}/{{ eachPlayer.deaths}}/{{ eachPlayer.assists}}</td>
+                        <td>{{ eachPlayer.xp_per_min}}/{{ eachPlayer.gold_per_min}}</td>
+                        <td><span class="pl-1"><img class="avatar-item" src= "{{eachPlayer.item_0 | itemId }}"></span><span class="pl-1"><img class="avatar-item" src= "{{eachPlayer.item_1 | itemId }}"></span> <span class="pl-1"><img class="avatar-item" src= "{{eachPlayer.item_2 | itemId }}"></span> <span class="pl-1"><img class="avatar-item" src= "{{eachPlayer.item_3 | itemId }}"></span> <span class="pl-1"><img class="avatar-item" src= "{{eachPlayer.item_4 | itemId }}"></span> <span class="pl-1"><img class="avatar-item" src= "{{eachPlayer.item_5 | itemId }}"></span> </td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+          </div>
+      </div>
+      <div class="col-lg  mt-2">
+          <div class="card">
+              <div class="card-body">
+              <h5 class="card-title">Team Details</h5>
+                <table class="table">
+                    <thead>
+                      <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">level</th>
+                          <th scope="col">K/D/A</th>
+                          <th scope="col">GPM/XPM</th>
+                          <th scope="col">Items</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let eachPlayer of matchData.players | slice:5:10 ">
+                        <td><span><img class="avatar" src="/assets/heroes_img/{{ eachPlayer.hero_id}}.jpg"></span><span class="px-2">{{ eachPlayer.personaname  }} </span> </td>
+                        <td>{{ eachPlayer.level }}</td>
+                        <td>{{ eachPlayer.kills}}/{{ eachPlayer.deaths}}/{{ eachPlayer.assists}}</td>
+                        <td>{{ eachPlayer.xp_per_min}}/{{ eachPlayer.gold_per_min}}</td>
+                        <td><span class="pl-1"><img class="avatar-item" src= "{{eachPlayer.item_0 | itemId }}"></span><span class="pl-1"><img class="avatar-item" src= "{{eachPlayer.item_1 | itemId }}"></span> <span class="pl-1"><img class="avatar-item" src= "{{eachPlayer.item_2 | itemId }}"></span> <span class="pl-1"><img class="avatar-item" src= "{{eachPlayer.item_3 | itemId }}"></span> <span class="pl-1"><img class="avatar-item" src= "{{eachPlayer.item_4 | itemId }}"></span> <span class="pl-1"><img class="avatar-item" src= "{{eachPlayer.item_5 | itemId }}"></span> </td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+          </div>
+      </div>
+</div>
+

@@ -42,24 +42,23 @@ export class Dota2apiService {
     return this.http.get('https://api.opendota.com/api/players/'+steamID+'/peers ').pipe(
       map(this.extractData));
   }
-
-  // public getFriendsMatches(steamID:any, friendID:any) : Observable<any> {
-  //   return this.http.get('https://api.opendota.com/api/players/'+steamID+'/matches?included_account_id='+friendID).pipe(
-  //     map(this.extractData));
-  // }
-
+  
   public getFriendsMatches(steamID:any, friendID:any) {
     return this.http.get('https://api.opendota.com/api/players/'+steamID+'/matches?included_account_id='+friendID).toPromise().then(function(result){
       return result;
     });
   }
-
+  
   public getHeroMatches(steamID:any, heroID:any) {
     return this.http.get('https://api.opendota.com/api/players/'+steamID+'/matches?hero_id='+heroID).toPromise().then(function(result){
       return result;
     });
   }
-
+  
+  public getMatchID(matchID:any) : Observable<any> {
+    return this.http.get(' https://api.opendota.com/api/matches/'+matchID).pipe(
+      map(this.extractData));
+  }
 
 
 }

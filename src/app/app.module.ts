@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from  '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,7 +15,11 @@ import { ChartsModule } from 'ng2-charts';
 import { IdHeroPipe } from './pipe/id-hero.pipe';
 import { SecondsTimePipe } from './pipe/seconds-time.pipe';
 import { GameTypePipe } from './pipe/game-type.pipe';
-import { WinLosePipe } from './pipe//win-lose.pipe';
+import { WinLosePipe } from './pipe/win-lose.pipe';
+import { AdminComponent } from './admin/admin.component';
+import { BottomSheetOverviewExampleSheet } from './admin/admin.component';
+import { MatchDetailsComponent } from './match-details/match-details.component';
+import { ItemIdPipe } from './pipe/item-id.pipe';
 
 @NgModule({
   declarations: [
@@ -22,21 +27,27 @@ import { WinLosePipe } from './pipe//win-lose.pipe';
     DashboardComponent,
     SteamUserComponent,
     DialogOverviewExampleDialog,
+    BottomSheetOverviewExampleSheet,
     IdHeroPipe,
     SecondsTimePipe,
     GameTypePipe,
-    WinLosePipe
+    WinLosePipe,
+    AdminComponent,
+    MatchDetailsComponent,
+    ItemIdPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
     ChartsModule
   ],
   entryComponents: [
-    DialogOverviewExampleDialog
+    DialogOverviewExampleDialog,
+    BottomSheetOverviewExampleSheet
   ],
   providers: [],
   bootstrap: [AppComponent]

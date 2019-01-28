@@ -37,7 +37,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr  *ngFor="let eachMatch of extraData" class="{{eachMatch.class}}">
+                  <tr  *ngFor="let eachMatch of extraData" class="{{eachMatch.class}}" routerLink="/matchId/{{eachMatch.match_id}}">
                     <td><span><img class="avatar  mx-auto d-block" src="/assets/heroes_img/{{ eachMatch.hero_id}}.jpg"></span><span class="text-center"><h6>{{ eachMatch.hero_id | idHero }}</h6></span> </td>
                     <td *ngIf="showFriend"><span><img class="avatar  mx-auto d-block" src="/assets/heroes_img/{{ eachMatch.friend_hero}}.jpg"></span><span class="text-center"><h6>{{ eachMatch.friend_hero | idHero }}</h6> </span></td>
                     <td *ngIf="showHero">{{ eachMatch.kills }} / {{ eachMatch.deaths }} / {{ eachMatch.assists }}</td>
