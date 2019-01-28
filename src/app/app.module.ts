@@ -20,6 +20,8 @@ import { AdminComponent } from './admin/admin.component';
 import { BottomSheetOverviewExampleSheet } from './admin/admin.component';
 import { MatchDetailsComponent } from './match-details/match-details.component';
 import { ItemIdPipe } from './pipe/item-id.pipe';
+import { FriendStatsComponent } from './friend-stats/friend-stats.component';
+import { HeroStatsComponent } from './hero-stats/hero-stats.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { ItemIdPipe } from './pipe/item-id.pipe';
     WinLosePipe,
     AdminComponent,
     MatchDetailsComponent,
-    ItemIdPipe
+    ItemIdPipe,
+    FriendStatsComponent,
+    HeroStatsComponent
   ],
   imports: [
     BrowserModule,

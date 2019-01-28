@@ -60,5 +60,15 @@ export class Dota2apiService {
       map(this.extractData));
   }
 
+  public getWLFriend(steamID:any,friendID:any) : Observable<any> {
+    return this.http.get(' https://api.opendota.com/api/players/'+steamID+'/wl?included_account_id='+friendID).pipe(
+      map(this.extractData));
+  }
+  
+  public getWLHero(steamID:any,heroID:any) : Observable<any> {
+    return this.http.get('https://api.opendota.com/api/players/'+steamID+'/wl?hero_id='+heroID).pipe(
+      map(this.extractData));
+  }
+
 
 }

@@ -11,7 +11,6 @@ export class DashboardComponent implements OnInit {
 
   steamID : Array<number> = [135515622,187707802,271827876];
   allSteamData= [];
-  @Input() data = ["aman sharma"];
 
   constructor(public d2api:Dota2apiService) {
    }
