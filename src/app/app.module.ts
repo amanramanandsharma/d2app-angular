@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from  '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { NgHttpLoaderModule } from 'ng-http-loader'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +23,8 @@ import { MatchDetailsComponent } from './match-details/match-details.component';
 import { ItemIdPipe } from './pipe/item-id.pipe';
 import { FriendStatsComponent } from './friend-stats/friend-stats.component';
 import { HeroStatsComponent } from './hero-stats/hero-stats.component';
+
+
 
 @NgModule({
   declarations: [
@@ -45,6 +48,7 @@ import { HeroStatsComponent } from './hero-stats/hero-stats.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    NgHttpLoaderModule.forRoot(),
     BrowserAnimationsModule,
     MaterialModule,
     ChartsModule

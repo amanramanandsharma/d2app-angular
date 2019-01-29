@@ -3,10 +3,9 @@
   <div class="row">
     <div class="col-lg-4 col-sm-12  mt-2">
         <div class="card">
-            <div class="card-body">
-              <h5 class="card-title  text-center">{{userData.profile.personaname}}</h5>
-              <img src="{{ userData.profile.avatarfull }}" class="rounded float-left">
-              <img src="/assets/ranks/{{ userData.rank_tier }}.jpg" class="rounded float-right">
+            <div class="card-body" *ngIf="userData.profile">
+              <h5 class="card-title  text-center"><span><img class="avatar-user  mx-auto d-block" src="{{ userData.profile.avatarfull }}"></span> {{userData.profile.personaname}}</h5>
+              <img src="/assets/ranks/{{ userData.rank_tier }}.jpg" class="rounded">
             </div>
           </div>
     </div>
@@ -28,10 +27,9 @@
     </div>
     <div class="col-lg-4 col-sm-12  mt-2">
         <div class="card">
-            <div class="card-body">
-              <h5 class="card-title  text-center">{{friendData.profile.personaname}}</h5>
-              <img src="{{ friendData.profile.avatarfull }}" class="rounded float-left">
-              <img src="/assets/ranks/{{ friendData.rank_tier }}.jpg" class="rounded float-right">
+            <div class="card-body" *ngIf="friendData.profile">
+              <h5 class="card-title  text-center"><span><img class="avatar-user  mx-auto d-block" src="{{ friendData.profile.avatarfull  }}"></span> {{friendData.profile.personaname}}</h5>
+              <img src="/assets/ranks/{{ friendData.rank_tier }}.jpg" class="rounded">
             </div>
           </div>
     </div>
