@@ -20,7 +20,7 @@ export interface DialogData {
   styleUrls: ['./steam-user.component.css']
 })
 export class SteamUserComponent implements OnInit {
-  userData = [];
+  userData : any = [];
   extraMatchData :any;
   peerData :any;
   heroesPlayedData :any;
@@ -95,11 +95,11 @@ export class SteamUserComponent implements OnInit {
 })
 export class DialogOverviewExampleDialog {
 
-  private extraData = [];
-  private steamID : any;
-  private friendID : any;
-  private showHero = false;
-  private showFriend = false;
+  public extraData :any = [];
+  public steamID : any;
+  public friendID : any;
+  public showHero = false;
+  public showFriend = false;
 
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
@@ -181,6 +181,15 @@ export class DialogOverviewExampleDialog {
   onNoClick(): void {
     this.dialogRef.close();
   }
+
+    // events
+    public chartClicked(e:any):void {
+      console.log(e);
+    }
+   
+    public chartHovered(e:any):void {
+      console.log(e);
+    }
  
 
 

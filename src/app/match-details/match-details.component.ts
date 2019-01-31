@@ -9,7 +9,7 @@ import { Dota2apiService } from '../services/dota2api.service';
 })
 export class MatchDetailsComponent implements OnInit {
 
-  matchData = {};
+  matchData: any = {};
 
   constructor(private d2api:Dota2apiService,private route: ActivatedRoute) { }
 

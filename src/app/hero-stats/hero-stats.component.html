@@ -53,6 +53,8 @@
                           <th scope="col">Game Mode</th>
                           <th scope="col">Win/Lose</th>
                           <th scope="col">Duration</th>
+                          <th scope="col">Date/Time</th>
+                          <th scope="col">Match-Id</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -65,6 +67,8 @@
                               <span *ngIf="!eachMatch.win"><button mat-icon-button ><mat-icon>sentiment_dissatisfied</mat-icon></button></span>
                             </td>
                           <td>{{ eachMatch.duration | secondsTime }}</td>
+                          <td>{{ eachMatch.start_time | dataTime  }}</td>
+                          <td>{{ eachMatch.match_id }}</td>
                         </tr>
                       </tbody>
                     </table>

@@ -26,9 +26,9 @@ export class BottomSheetOverviewExampleSheet {
   constructor(private bottomSheetRef: MatBottomSheetRef<BottomSheetOverviewExampleSheet>) {
     bottomSheetRef.disableClose = true;
   }
-  private email :string;
-  private password :string;
-  private hideError :boolean = false;
+  public email :string;
+  public password :string;
+  public hideError :boolean = false;
 
   checkCredentials(): void {
     if(this.email == "admin" && this.password=="secret"){

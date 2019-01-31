@@ -10,15 +10,14 @@ import { Dota2apiService } from '../services/dota2api.service';
 })
 export class HeroStatsComponent implements OnInit {
 
-  private extraData = [];
-  private userData = {};
-  private heroData :number =0;
-  private heroDOMID :number = 0;
+  public extraData :any = [];
+  public userData :any = {};
+  public heroData :number =0;
+  public heroDOMID :number = 0;
 
   public doughnutChartLabels:string[] = ['win','loss'];
   public doughnutChartData:number[] = [400,300];
   public doughnutChartType:string = 'doughnut';
-  public
 
   constructor(private d2api:Dota2apiService,private route: ActivatedRoute) { }
 
@@ -58,5 +57,14 @@ export class HeroStatsComponent implements OnInit {
     });
 
   }
+
+     // events
+     public chartClicked(e:any):void {
+      console.log(e);
+    }
+   
+    public chartHovered(e:any):void {
+      console.log(e);
+    }
 
 }

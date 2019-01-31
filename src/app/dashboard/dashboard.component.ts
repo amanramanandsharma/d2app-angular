@@ -9,7 +9,7 @@ import { Dota2apiService } from '../services/dota2api.service';
 })
 export class DashboardComponent implements OnInit {
 
-  steamID : Array<number> = [135515622,187707802,271827876];
+  steamID : Array<number> = [135515622,187707802,271827876,212929749];
   allSteamData= [];
 
   constructor(public d2api:Dota2apiService) {

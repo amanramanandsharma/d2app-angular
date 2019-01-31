@@ -3,22 +3,56 @@
     <div class="col-lg-5  mt-2">
       <div class="card">
         <div class="card-body">
-        <h5 class="card-title" ><img src="/assets/radient.png" class="rounded"></h5>
+          <div class="row">
+            <div class="col" style="max-width: 180px">
+                <h5 class="card-title" ><img src="/assets/radient.png" class="rounded"></h5>
+            </div>
+            <div class="col">
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                      <h1>Radiant Score - {{ matchData.radiant_score }}</h1>
+                    </div>
+                  </div>
+            </div>
+          </div>
       </div>
       </div>
     </div>
     <div class="col-lg-2  mt-2">
       <div class="card">
-        <div class="card-body">
-        <h5 class="card-title" *ngIf="matchData.radiant_win">Radient Victory</h5>
-        <h5 class="card-title" *ngIf="!matchData.radiant_win">Dire victory</h5>
+        <div class="card-body p-0">
+            <div class="jumbotron jumbotron-fluid text-center py-0 mb-0">
+                  <h3  *ngIf="matchData.radiant_win" class="pt-1">Radiant Victory</h3>
+                  <h3  *ngIf="!matchData.radiant_win" class="pt-1">Dire victory</h3>
+                  <hr>
+                  <h5>{{ matchData.game_mode  | gameType }} </h5>
+                  <h5>{{ matchData.duration | secondsTime }} </h5>
+                  <h5>{{ matchData.start_time | dataTime }} </h5>
+                  <hr>
+                  <div class="pb-2">
+                      <h5 class="text-center">Banned Heroes </h5>
+                      <span class="px-2" *ngFor="let pickBans of matchData.picks_bans"><img class="avatar" src="/assets/heroes_img/{{ pickBans.hero_id}}.jpg"></span>
+                  </div>
+            </div>
+       
       </div>
       </div>
     </div>
     <div class="col-lg-5  mt-2">
       <div class="card">
         <div class="card-body">
-        <h5 class="card-title"><img src="/assets/dire.png" class="rounded"></h5>
+            <div class="row">
+                <div class="col" style="max-width: 180px">
+                    <h5 class="card-title"><img src="/assets/dire.png" class="rounded"></h5>
+                </div>
+                <div class="col">
+                    <div class="jumbotron jumbotron-fluid">
+                        <div class="container">
+                          <h1>Dire Score - {{ matchData.dire_score }}</h1>
+                        </div>
+                      </div>
+                </div>
+              </div>
       </div>
       </div>
     </div>

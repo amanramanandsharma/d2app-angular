@@ -9,10 +9,10 @@ import { Dota2apiService } from '../services/dota2api.service';
 })
 export class FriendStatsComponent implements OnInit {
 
-  private extraData = [];
-  private userData = {};
-  private friendData = {};
-  private totalGames : number = 0;
+  public extraData : any = [];
+  public userData : any = {};
+  public friendData : any = {};
+  public totalGames : number = 0;
 
   public doughnutChartLabels:string[] = ['win','loss'];
   public doughnutChartData:number[] = [400,300];
@@ -66,5 +66,14 @@ export class FriendStatsComponent implements OnInit {
       });
 
   }
+
+    // events
+    public chartClicked(e:any):void {
+      console.log(e);
+    }
+   
+    public chartHovered(e:any):void {
+      console.log(e);
+    }
 
 }

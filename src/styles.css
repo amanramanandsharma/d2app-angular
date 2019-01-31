@@ -23,11 +23,19 @@
     border-radius: 10%;
   }
 
-  [ng-reflect-router-link] {
+  /* [ng-reflect-router-link] {
     cursor: pointer;
   }
 
   [ng-reflect-router-link]:hover {
+    filter: brightness(85%);
+  } */
+
+  li , tr {
+    cursor: pointer;
+  }
+
+  li:hover , tr:hover{
     filter: brightness(85%);
   }
 

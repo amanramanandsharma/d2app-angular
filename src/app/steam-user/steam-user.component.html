@@ -2,7 +2,7 @@
   <div class="row my-3">
       <div class="col-lg">
           <div class="card bg-light mb-3 ">
-              <div class="card-header text-center">{{ userData.name }}</div>
+              <div class="card-header text-center"><b>{{ userData.name }}</b></div>
               <div class="card-body">
                 <div class="row">
                   <div class="col">
@@ -23,7 +23,7 @@
     </div>
     <div class="col-lg">
         <div class="card bg-light mb-3 ">
-            <div class="card-header text-center">Most Played Friends</div>
+            <div class="card-header text-center"><b>Most Played Friends</b></div>
             <div class="card-body limit-height">
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let peer of peerData" routerLink="/friendStats/{{userData.account_id}}/{{peer.account_id}}">
@@ -37,7 +37,7 @@
     </div>
     <div class="col-lg">
         <div class="card bg-light mb-3 ">
-            <div class="card-header text-center">Most Played Heroes</div>
+            <div class="card-header text-center"><b>Most Played Heroes</b></div>
             <div class="card-body limit-height">
                 <ul class="list-group">
                   <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let heroes of heroesPlayedData" routerLink="/heroStats/{{userData.account_id}}/{{heroes.hero_id}}" >
@@ -52,7 +52,7 @@
 </div>
 
   <div class="card">
-      <div class="card-header text-center">Recent Matches</div>
+      <div class="card-header text-center"><b>Recent Matches</b></div>
       <div class="card-body">
           <div class="table-responsive">
               <table class="table table-hover table-striped">
@@ -65,6 +65,7 @@
                       <th scope="col">GPM</th>
                       <th scope="col">XPM</th>
                       <th scope="col">Duration</th>
+                      <th scope="col">Date/Time</th>
                       <th scope="col">Match-Id</th>
                     </tr>
                   </thead>
@@ -80,6 +81,7 @@
                       <td>{{recentMatches.gold_per_min }}</td>
                       <td>{{recentMatches.xp_per_min }}</td>
                       <td>{{ recentMatches.duration | secondsTime }}  </td>
+                      <td>{{ recentMatches.start_time | dataTime  }}  </td>
                       <td> {{ recentMatches.match_id }} </td>
                     </tr>
                   </tbody>
