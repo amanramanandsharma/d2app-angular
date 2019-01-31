@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
+import {User} from '../steamUser';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,17 @@ export class Dota2apiService {
     return body || { };
   }
 
+  public search(filter: {name: string} = {name: ''}): Observable<any> {
+    return this.http.get('https://api.opendota.com/api/search?q='+filter.name)
+    .pipe(
+      tap((response) => {
+        response.results = response
+          .map(user => new User(user.account_id, user.personaname , user.avatarfull, user.similarity,))
+          .filter(user => user.personaname.includes(filter.name))
+        return response;
+      })
+      );
+  }
 
   public getBySteamId(steamID:any): Observable<any> {
     return this.http.get('https://api.opendota.com/api/players/'+steamID).pipe(

@@ -2,13 +2,26 @@
   <div class="row m-3">
     <div class="col-lg-6 col-sm-12 col-md-6">
         <div class="card">
-            <mat-list-item role="listitem m-2">
-                <form class="example-form">
-                    <mat-form-field class="example-full-width">
-                      <input matInput #message maxlength="256" placeholder="Enter Steam ID">
-                    </mat-form-field>
-                  </form>
-            </mat-list-item>
+            <mat-list>
+                <mat-list-item>
+                    <form class="example-form" [formGroup]='usersForm'>
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Search Steam User" [matAutocomplete]="auto" formControlName='userInput'>
+                        </mat-form-field>
+                      
+                        <mat-autocomplete #auto="matAutocomplete">
+                          <mat-option *ngIf="isLoading" class="is-loading"><mat-spinner diameter="50"></mat-spinner></mat-option>
+                          <ng-container>
+                            <mat-option (onSelectionChange)="showDetailsUser(user)" *ngFor="let user of filteredUsers | slice:0:10 " [value]="user">
+                              <img class="avatar-item"  src="{{ user.avatarfull }}" >
+                              <span class="pl-2">{{ user.personaname }}</span>
+                              <small> | ID: {{user.account_id}}</small>
+                            </mat-option>
+                          </ng-container>
+                        </mat-autocomplete>
+                      </form>
+                </mat-list-item>
+              </mat-list>
         </div>
       </div>
 
@@ -44,8 +57,8 @@
                           </mat-form-field>
                         </form>
                   </mat-list-item>
-                  <mat-list>
-                    <mat-list-item *ngFor="let user of allSteamData"  routerLink="/steamUser/{{user.profile.account_id}}">
+                  <mat-list *ngFor="let user of allSteamData" >
+                    <mat-list-item  *ngIf="user.profile" routerLink="/steamUser/{{user.profile.account_id}}">
                       <img matListAvatar src="{{ user.profile.avatarfull }}" >
                       <h3 matLine>{{ user.profile.personaname }}</h3>
                       <mat-divider></mat-divider>

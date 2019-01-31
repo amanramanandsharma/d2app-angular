@@ -16,7 +16,8 @@ import {
   MatDividerModule,
   MatProgressSpinnerModule,
   MatDialogModule,
-  MatBottomSheetModule
+  MatBottomSheetModule,
+  MatAutocompleteModule
 } from '@angular/material';
 
 @NgModule({
@@ -44,7 +45,8 @@ import {
     MatDividerModule,
     MatProgressSpinnerModule,
     MatDialogModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    MatAutocompleteModule
   ]
 })
 export class MaterialModule {}
