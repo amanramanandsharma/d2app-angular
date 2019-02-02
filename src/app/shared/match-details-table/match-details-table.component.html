@@ -17,7 +17,7 @@
           <tr *ngFor="let recentMatches of data" class="{{recentMatches.class}}" routerLink="/matchId/{{recentMatches.match_id}}">
             <td><span><img class="avatar mx-auto d-block" src="/assets/heroes_img/{{ recentMatches.hero_id}}.jpg"></span><span class="text-center"><h6>{{ recentMatches.hero_id | idHero }}</h6></span></td>
             <td  *ngIf="showFriend"><span><img class="avatar  mx-auto d-block" src="/assets/heroes_img/{{ recentMatches.friend_hero}}.jpg"></span><span class="text-center"><h6>{{ recentMatches.friend_hero | idHero }}</h6> </span></td>
-            <td class="d-none d-lg-table-cell">{{recentMatches.game_mode | gameType }}</td>
+            <td class="d-none d-lg-table-cell">{{recentMatches.game_mode | gameType: recentMatches.lobby_type }}</td>
             <td class="d-none d-lg-table-cell">{{recentMatches.kills }} / {{recentMatches.deaths }} / {{recentMatches.assists }}  </td>
             <td class="d-none d-lg-table-cell" *ngIf="colGPM">{{recentMatches.gold_per_min }}</td>
             <td class="d-none d-lg-table-cell" *ngIf="colXPM">{{recentMatches.xp_per_min }}</td>
