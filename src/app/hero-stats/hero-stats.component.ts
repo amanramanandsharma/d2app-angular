@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Dota2apiService } from '../services/dota2api.service';
 
@@ -10,7 +10,9 @@ import { Dota2apiService } from '../services/dota2api.service';
 })
 export class HeroStatsComponent implements OnInit {
 
-  public extraData :any = [];
+  @Input() extraData :any = [];
+  @Input() isFriend : number = 1;
+
   public userData :any = {};
   public heroData :number =0;
   public heroDOMID :number = 0;

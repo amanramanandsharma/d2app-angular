@@ -23,6 +23,7 @@ import { ItemIdPipe } from './pipe/item-id.pipe';
 import { FriendStatsComponent } from './friend-stats/friend-stats.component';
 import { HeroStatsComponent } from './hero-stats/hero-stats.component';
 import { DataTimePipe } from './pipe/data-time.pipe';
+import { MatchDetailsTableComponent } from './shared/match-details-table/match-details-table.component';
 
 
 
@@ -42,7 +43,8 @@ import { DataTimePipe } from './pipe/data-time.pipe';
     ItemIdPipe,
     FriendStatsComponent,
     HeroStatsComponent,
-    DataTimePipe
+    DataTimePipe,
+    MatchDetailsTableComponent
   ],
   imports: [
     BrowserModule,

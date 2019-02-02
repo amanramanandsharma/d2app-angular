@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Dota2apiService } from '../services/dota2api.service';
 
@@ -9,7 +9,8 @@ import { Dota2apiService } from '../services/dota2api.service';
 })
 export class FriendStatsComponent implements OnInit {
 
-  public extraData : any = [];
+  @Input() extraData : any = [];
+  @Input() isFriend : number = 0;
   public userData : any = {};
   public friendData : any = {};
   public totalGames : number = 0;
@@ -32,7 +33,7 @@ export class FriendStatsComponent implements OnInit {
           this.friendData = data;
       });
 
-      this.d2api.getFriendsMatches(userId,friendId).then((data: any) => {
+      this.d2api.getFriendsMatches(userId,friendId).subscribe((data: any) => {
         for (var i = 0; i < 20; i++) {
          this.extraData.push(data[i]);
       }

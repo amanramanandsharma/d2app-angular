@@ -40,43 +40,15 @@
     </div>
   
     <div class="row">
-      <div class="col-lg-12 col-sm-12  mt-2">
-    <div class="card">
-      <div class="card-header text-center">Recent Matches</div>
-          <div class="card-body">
-              <div class="table-responsive fixed-height">
-                  <table class="table table-hover table-striped table-bordered">
-                      <thead class="thead-dark">
-                        <tr>
-                          <th scope="col">Your Hero</th>
-                          <th scope="col">K/D/A</th>
-                          <th scope="col">Game Mode</th>
-                          <th scope="col">Win/Lose</th>
-                          <th scope="col">Duration</th>
-                          <th scope="col">Date/Time</th>
-                          <th scope="col">Match-Id</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr  *ngFor="let eachMatch of extraData" class="{{eachMatch.class}}" routerLink="/matchId/{{eachMatch.match_id}}">
-                          <td><span><img class="avatar  mx-auto d-block" src="/assets/heroes_img/{{ eachMatch.hero_id}}.jpg"></span><span class="text-center"><h6>{{ eachMatch.hero_id | idHero }}</h6></span> </td>
-                          <td>{{ eachMatch.kills }} / {{ eachMatch.deaths }} / {{ eachMatch.assists }}</td>
-                          <td>{{ eachMatch.game_mode | gameType }}</td>
-                          <td>
-                              <span *ngIf="eachMatch.win"><button mat-icon-button color="warn"><mat-icon>favorite</mat-icon></button></span>
-                              <span *ngIf="!eachMatch.win"><button mat-icon-button ><mat-icon>sentiment_dissatisfied</mat-icon></button></span>
-                            </td>
-                          <td>{{ eachMatch.duration | secondsTime }}</td>
-                          <td>{{ eachMatch.start_time | dataTime  }}</td>
-                          <td>{{ eachMatch.match_id }}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                </div>
+        <div class="col-lg">
+          <div class="card">
+            <div class="card-header text-center"><b>Recent Matches</b></div>
+            <div class="card-body">
+                <app-match-details-table *ngIf='extraData' [isFriend]='isFriend' [data]='extraData' ></app-match-details-table>
+            </div>
           </div>
-    </div>
-    </div>
-  </div>
+        </div>
+      </div>
   
   </div>
   

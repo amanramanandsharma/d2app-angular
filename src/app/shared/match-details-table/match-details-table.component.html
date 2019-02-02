@@ -1,0 +1,30 @@
+ <div>
+    <table class="table table-hover table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col" *ngIf="showFriend">Friend's Hero</th>
+            <th scope="col" class="d-none d-lg-table-cell">Gametype</th>
+            <th scope="col" class="d-none d-lg-table-cell">K/D/A</th>
+            <th scope="col" class="d-none d-lg-table-cell" *ngIf="colGPM" >GPM</th>
+            <th scope="col" class="d-none d-lg-table-cell" *ngIf="colXPM">XPM</th>
+            <th scope="col" class="d-none d-sm-table-cell">Duration</th>
+            <th scope="col" class="d-none d-lg-table-cell">Date/Time</th>
+            <th scope="col" class="d-none d-lg-table-cell">Match-Id</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let recentMatches of data" class="{{recentMatches.class}}" routerLink="/matchId/{{recentMatches.match_id}}">
+            <td><span><img class="avatar mx-auto d-block" src="/assets/heroes_img/{{ recentMatches.hero_id}}.jpg"></span><span class="text-center"><h6>{{ recentMatches.hero_id | idHero }}</h6></span></td>
+            <td  *ngIf="showFriend"><span><img class="avatar  mx-auto d-block" src="/assets/heroes_img/{{ recentMatches.friend_hero}}.jpg"></span><span class="text-center"><h6>{{ recentMatches.friend_hero | idHero }}</h6> </span></td>
+            <td class="d-none d-lg-table-cell">{{recentMatches.game_mode | gameType }}</td>
+            <td class="d-none d-lg-table-cell">{{recentMatches.kills }} / {{recentMatches.deaths }} / {{recentMatches.assists }}  </td>
+            <td class="d-none d-lg-table-cell" *ngIf="colGPM">{{recentMatches.gold_per_min }}</td>
+            <td class="d-none d-lg-table-cell" *ngIf="colXPM">{{recentMatches.xp_per_min }}</td>
+            <td class="d-none d-sm-table-cell">{{ recentMatches.duration | secondsTime }}  </td>
+            <td class="d-none d-lg-table-cell">{{ recentMatches.start_time | dataTime  }}  </td>
+            <td class="d-none d-lg-table-cell"> {{ recentMatches.match_id }} </td>
+          </tr>
+        </tbody>
+      </table>
+  </div> 

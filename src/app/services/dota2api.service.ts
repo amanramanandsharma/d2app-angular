@@ -55,10 +55,9 @@ export class Dota2apiService {
       map(this.extractData));
   }
   
-  public getFriendsMatches(steamID:any, friendID:any) {
-    return this.http.get('https://api.opendota.com/api/players/'+steamID+'/matches?included_account_id='+friendID).toPromise().then(function(result){
-      return result;
-    });
+  public getFriendsMatches(steamID:any, friendID:any) : Observable<any>  {
+    return this.http.get('https://api.opendota.com/api/players/'+steamID+'/matches?included_account_id='+friendID).pipe(
+      map(this.extractData));
   }
   
   public getHeroMatches(steamID:any, heroID:any) {

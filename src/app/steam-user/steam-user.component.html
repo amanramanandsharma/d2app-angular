@@ -50,43 +50,15 @@
           </div>
   </div>
 </div>
-
-  <div class="card">
+<div class="row">
+  <div class="col-lg">
+    <div class="card">
       <div class="card-header text-center"><b>Recent Matches</b></div>
       <div class="card-body">
-          <div class="table-responsive">
-              <table class="table table-hover table-striped">
-                  <thead class="thead-dark">
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Gametype</th>
-                      <th scope="col">Win/Loss</th>
-                      <th scope="col">K/D/A</th>
-                      <th scope="col">GPM</th>
-                      <th scope="col">XPM</th>
-                      <th scope="col">Duration</th>
-                      <th scope="col">Date/Time</th>
-                      <th scope="col">Match-Id</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let recentMatches of extraMatchData" class="{{recentMatches.class}}" routerLink="/matchId/{{recentMatches.match_id}}">
-                      <td><span><img class="avatar" src="/assets/heroes_img/{{ recentMatches.hero_id}}.jpg"></span><span class="px-2">{{ recentMatches.hero_id | idHero }} </span> </td>
-                      <td>{{recentMatches.game_mode | gameType }}   </td>
-                      <td>
-                          <span *ngIf="recentMatches.win"><button mat-icon-button color="warn"><mat-icon>favorite</mat-icon></button></span>
-                          <span *ngIf="!recentMatches.win"><button mat-icon-button ><mat-icon>sentiment_dissatisfied</mat-icon></button></span>
-                        </td>
-                      <td>{{recentMatches.kills }} / {{recentMatches.deaths }} / {{recentMatches.assists }}  </td>
-                      <td>{{recentMatches.gold_per_min }}</td>
-                      <td>{{recentMatches.xp_per_min }}</td>
-                      <td>{{ recentMatches.duration | secondsTime }}  </td>
-                      <td>{{ recentMatches.start_time | dataTime  }}  </td>
-                      <td> {{ recentMatches.match_id }} </td>
-                    </tr>
-                  </tbody>
-                </table>
-            </div>
+          <app-match-details-table *ngIf='matchDetailsChild' [data]='matchDetailsChild' ></app-match-details-table>
       </div>
     </div>
+  </div>
+</div>
+  
 </div>

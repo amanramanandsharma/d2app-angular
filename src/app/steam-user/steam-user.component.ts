@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject , Input  } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Dota2apiService } from '../services/dota2api.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
@@ -21,9 +21,10 @@ export interface DialogData {
 })
 export class SteamUserComponent implements OnInit {
   userData : any = [];
-  extraMatchData :any;
   peerData :any;
   heroesPlayedData :any;
+
+  @Input() matchDetailsChild :any ;
 
 
   constructor(private d2api:Dota2apiService,private route: ActivatedRoute,public dialog: MatDialog) { }
@@ -56,20 +57,20 @@ export class SteamUserComponent implements OnInit {
     });
 
     this.d2api.getRecentMatches(steamId).subscribe((data: {}) => {
-        this.extraMatchData = data;
+        this.matchDetailsChild = data;
 
-          for (var i = 0; i < this.extraMatchData.length; i++) {
-            if(this.extraMatchData[i].radiant_win == true && this.extraMatchData[i].player_slot < 10){
-                this.extraMatchData[i].win = true;
-                this.extraMatchData[i].class = 'table-success';
+          for (var i = 0; i < this.matchDetailsChild.length; i++) {
+            if(this.matchDetailsChild[i].radiant_win == true && this.matchDetailsChild[i].player_slot < 10){
+                this.matchDetailsChild[i].win = true;
+                this.matchDetailsChild[i].class = 'table-success';
 
-            }else if(this.extraMatchData[i].radiant_win == false && this.extraMatchData[i].player_slot> 99){
-              this.extraMatchData[i].win = true;
-              this.extraMatchData[i].class = 'table-success';
+            }else if(this.matchDetailsChild[i].radiant_win == false && this.matchDetailsChild[i].player_slot> 99){
+              this.matchDetailsChild[i].win = true;
+              this.matchDetailsChild[i].class = 'table-success';
 
             }else{
-              this.extraMatchData[i].win = false;
-              this.extraMatchData[i].class = 'table-danger';
+              this.matchDetailsChild[i].win = false;
+              this.matchDetailsChild[i].class = 'table-danger';
 
             }
       }
@@ -107,68 +108,6 @@ export class DialogOverviewExampleDialog {
     private d2api:Dota2apiService) {
       this.steamID = this.passedData.steamUser;
       this.friendID = this.passedData.friendID;
-
-      if(this.passedData.type == 0){
-
-            this.showFriend = true;
-            this.showHero = false;
-
-         // --------------------------------- If Type is Friend ---------------------------------------------
-      this.d2api.getFriendsMatches(this.passedData.steamUser,this.passedData.friendID).then((data: any) => {
-        for (var i = 0; i < 20; i++) {
-         this.extraData.push(data[i]);
-      }
-
-      for(var i = 0; i < this.extraData.length; i++){
-          for(var eachHero in this.extraData[i]['heroes']){
-                if( this.friendID == this.extraData[i]['heroes'][eachHero].account_id){
-                  this.extraData[i].friend_hero =  this.extraData[i]['heroes'][eachHero].hero_id;
-                }
-              }
-
-                  if(this.extraData[i].radiant_win == true && this.extraData[i].player_slot < 10){
-                      this.extraData[i].win = true;
-                      this.extraData[i].class = 'table-success';
-
-                  }else if(this.extraData[i].radiant_win == false && this.extraData[i].player_slot> 99){
-                    this.extraData[i].win = true;
-                    this.extraData[i].class = 'table-success';
-
-                  }else{
-                    this.extraData[i].win = false;
-                    this.extraData[i].class = 'table-danger';
-                  }
-
-            }
-      });
-
-      // --------------------------------- If Type is Hero  -------------------------------------------------
-      }else if(this.passedData.type == 1){
-
-              this.showFriend = false;
-              this.showHero = true;
-
-            this.d2api.getHeroMatches(this.passedData.steamUser,this.passedData.name).then((data: any) => {
-              for (var i = 0; i < 20; i++) {
-                this.extraData.push(data[i]);
-            }
-            for(var i = 0; i < this.extraData.length; i++){   
-                    if(this.extraData[i].radiant_win == true && this.extraData[i].player_slot < 10){
-                        this.extraData[i].win = true;
-                        this.extraData[i].class = 'table-success';
-  
-                    }else if(this.extraData[i].radiant_win == false && this.extraData[i].player_slot> 99){
-                      this.extraData[i].win = true;
-                      this.extraData[i].class = 'table-success';
-  
-                    }else{
-                      this.extraData[i].win = false;
-                      this.extraData[i].class = 'table-danger';
-                    }
-                }
-          });
-      }
-
    
 
     }
