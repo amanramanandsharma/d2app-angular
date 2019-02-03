@@ -25,7 +25,7 @@
                   <h3  *ngIf="matchData.radiant_win" class="pt-1">Radiant Victory</h3>
                   <h3  *ngIf="!matchData.radiant_win" class="pt-1">Dire victory</h3>
                   <hr>
-                  <h5>{{ matchData.game_mode  | gameType }} </h5>
+                  <h5>{{ matchData.game_mode  | gameType: matchData.lobby_type }} </h5>
                   <h5>{{ matchData.duration | secondsTime }} </h5>
                   <h5>{{ matchData.start_time | dataTime }} </h5>
                   <hr>
@@ -79,7 +79,14 @@
                         <td>{{ eachPlayer.level }}</td>
                         <td>{{ eachPlayer.kills}}/{{ eachPlayer.deaths}}/{{ eachPlayer.assists}}</td>
                         <td>{{ eachPlayer.xp_per_min}}/{{ eachPlayer.gold_per_min}}</td>
-                        <td><span class="pl-1"><img class="avatar-item" src= "{{eachPlayer.item_0 | itemId }}"></span><span class="pl-1"><img class="avatar-item" src= "{{eachPlayer.item_1 | itemId }}"></span> <span class="pl-1"><img class="avatar-item" src= "{{eachPlayer.item_2 | itemId }}"></span> <span class="pl-1"><img class="avatar-item" src= "{{eachPlayer.item_3 | itemId }}"></span> <span class="pl-1"><img class="avatar-item" src= "{{eachPlayer.item_4 | itemId }}"></span> <span class="pl-1"><img class="avatar-item" src= "{{eachPlayer.item_5 | itemId }}"></span> </td>
+                        <td>
+                          <span class="pl-1"><img class="avatar-item" src= "{{eachPlayer.item_0 | itemId }}"></span>
+                          <span class="pl-1"><img class="avatar-item" src= "{{eachPlayer.item_1 | itemId }}"></span> 
+                          <span class="pl-1"><img class="avatar-item" src= "{{eachPlayer.item_2 | itemId }}"></span>
+                          <span class="pl-1"><img class="avatar-item" src= "{{eachPlayer.item_3 | itemId }}"></span>
+                          <span class="pl-1"><img class="avatar-item" src= "{{eachPlayer.item_4 | itemId }}"></span> 
+                          <span class="pl-1"><img class="avatar-item" src= "{{eachPlayer.item_5 | itemId }}"></span>
+                        </td>
                       </tr>
                     </tbody>
                   </table>

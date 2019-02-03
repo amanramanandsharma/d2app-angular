@@ -18,15 +18,15 @@ export class Dota2apiService {
   }
 
   public search(filter: {name: string} = {name: ''}): Observable<any> {
-    return this.http.get('https://api.opendota.com/api/search?q='+filter.name)
-    .pipe(
-      tap((response) => {
-        response.results = response
-          .map(user => new User(user.account_id, user.personaname , user.avatarfull, user.similarity,))
-          .filter(user => user.personaname.includes(filter.name))
-        return response;
-      })
-      );
+      return this.http.get('https://api.opendota.com/api/search?q='+filter.name)
+      .pipe(
+          tap((response) => {
+            response.results = response
+              .map(user => new User(user.account_id, user.personaname , user.avatarfull, user.similarity,))
+              .filter(user => user.personaname.includes(filter.name))
+            return response;
+          })
+        );
   }
 
   public getBySteamId(steamID:any): Observable<any> {
