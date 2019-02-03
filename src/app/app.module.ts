@@ -24,6 +24,7 @@ import { FriendStatsComponent } from './friend-stats/friend-stats.component';
 import { HeroStatsComponent } from './hero-stats/hero-stats.component';
 import { DataTimePipe } from './pipe/data-time.pipe';
 import { MatchDetailsTableComponent } from './shared/match-details-table/match-details-table.component';
+import { RegisterTeamComponent } from './register-team/register-team.component';
 
 
 
@@ -44,7 +45,8 @@ import { MatchDetailsTableComponent } from './shared/match-details-table/match-d
     FriendStatsComponent,
     HeroStatsComponent,
     DataTimePipe,
-    MatchDetailsTableComponent
+    MatchDetailsTableComponent,
+    RegisterTeamComponent
   ],
   imports: [
     BrowserModule,

@@ -15,7 +15,7 @@
                 <ng-container>
                   <mat-option (onSelectionChange)="showDetailsUser(user)" *ngFor="let user of filteredUsers | slice:0:10 "
                     [value]="user">
-                    <img class="avatar-item" src="{{ user.avatarfull }}">
+                    <img class="avatar-user" src="{{ user.avatarfull }}">
                     <span class="pl-2">{{ user.personaname }}</span>
                     <small> | ID: {{user.account_id}}</small>
                   </mat-option>
